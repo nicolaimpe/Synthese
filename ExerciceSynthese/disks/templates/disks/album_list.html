@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        a:link {
+            font-family: arial, sans-serif;
+            background-color: #cadef4;
+  color: black;
+            width: 400px;
+  padding: 14px 10px;
+            border: 1px solid black;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+}
+
+        a:visited{
+            background-color: #f48c8c;
+            color: black
+        }
+a:hover, a:active {
+  background-color: #71aff4;
+    color: black
+}
+    </style>
+</head>
+<body>
+{% extends "disks/base.html" %}
+{% block title %}Disks{% endblock %}
+{% block content %}
+<header></header>
+<h2> Choisissez votre album :</h2>
+
+<form action = "" method = "post">
+    <label for="id_string">Rechercher:</label><br>
+
+    <input id = "id_string" type="text" name="string"  placeholder="Search"/><br>
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+    </form>
+<ul style="list-style-type:none;">
+{% for album in albums %}
+    <li> <a href="album/{{album.id}}">
+    {{ album.title}} </a>
+        </li>
+{% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>
